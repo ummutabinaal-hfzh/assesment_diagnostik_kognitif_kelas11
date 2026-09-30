@@ -1,0 +1,1432 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Periodesasi Pemberlakuan UUD di Indonesia</title>
+    <style>
+      :root {
+        --purple: #6c2bd9;
+        --purple-dark: #42178f;
+        --purple-soft: #f1eaff;
+        --yellow: #ffd43b;
+        --yellow-soft: #fff7c7;
+        --white: #ffffff;
+        --ink: #241b35;
+        --muted: #6f667d;
+        --success: #16845b;
+        --danger: #c0392b;
+        --shadow: 0 16px 45px rgba(66, 23, 143, 0.14);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family:
+          Inter,
+          Segoe UI,
+          Arial,
+          sans-serif;
+        background: linear-gradient(135deg, #fff 0%, #fffdf0 48%, #f5efff 100%);
+        color: var(--ink);
+        min-height: 100vh;
+      }
+      button,
+      input,
+      textarea {
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+      }
+      .app {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid #eee7f8;
+        padding: 12px 24px;
+      }
+      .topbar-inner {
+        max-width: 1180px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+      .brand {
+        font-weight: 900;
+        color: var(--purple-dark);
+        white-space: nowrap;
+      }
+      .progress-wrap {
+        flex: 1;
+      }
+      .progress-meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      .progress {
+        height: 8px;
+        background: #eeeaf3;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      .progress-bar {
+        height: 100%;
+        width: 10%;
+        background: linear-gradient(90deg, var(--yellow), var(--purple));
+        border-radius: 20px;
+        transition: 0.35s;
+      }
+      main {
+        width: 100%;
+        flex: 1;
+      }
+      .deck {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 30px 22px 110px;
+      }
+      .slide {
+        display: none;
+        animation: fade 0.35s ease;
+      }
+      .slide.active {
+        display: block;
+      }
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--yellow-soft);
+        color: var(--purple-dark);
+        border: 1px solid #f2dc63;
+        padding: 7px 12px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 800;
+      }
+      h1 {
+        font-size: clamp(38px, 6vw, 72px);
+        line-height: 1.02;
+        margin: 18px 0 14px;
+        letter-spacing: -2px;
+      }
+      h2 {
+        font-size: clamp(30px, 4vw, 48px);
+        line-height: 1.08;
+        margin: 15px 0;
+      }
+      h3 {
+        margin: 0 0 8px;
+      }
+      p {
+        line-height: 1.7;
+      }
+      .subtitle {
+        font-size: 18px;
+        color: var(--muted);
+        max-width: 760px;
+      }
+      .cover {
+        min-height: 70vh;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 30px;
+        align-items: center;
+      }
+      .cover-card {
+        background: var(--purple);
+        color: white;
+        border-radius: 30px;
+        padding: 34px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+      .cover-card:before,
+      .cover-card:after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 212, 59, 0.2);
+      }
+      .cover-card:before {
+        width: 220px;
+        height: 220px;
+        right: -90px;
+        top: -80px;
+      }
+      .cover-card:after {
+        width: 150px;
+        height: 150px;
+        left: -70px;
+        bottom: -60px;
+      }
+      .cover-content {
+        position: relative;
+        z-index: 1;
+      }
+      .cover h1 {
+        max-width: 700px;
+      }
+      .hero-visual {
+        background: var(--white);
+        border-radius: 30px;
+        padding: 28px;
+        box-shadow: var(--shadow);
+        border: 1px solid #eee5ff;
+        min-height: 340px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .constitution-stack {
+        width: 230px;
+        display: grid;
+        gap: 12px;
+      }
+      .paper {
+        background: white;
+        border: 2px solid #e7ddf8;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(66, 23, 143, 0.1);
+        text-align: center;
+      }
+      .paper:nth-child(2) {
+        transform: translateX(18px);
+        border-color: #f0d957;
+      }
+      .paper:nth-child(3) {
+        transform: translateX(-10px);
+        background: var(--purple-soft);
+      }
+      .paper strong {
+        display: block;
+        font-size: 30px;
+        color: var(--purple);
+      }
+      .btn {
+        border: 0;
+        border-radius: 14px;
+        padding: 12px 18px;
+        font-weight: 800;
+        transition: 0.2s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+      .btn-primary {
+        background: var(--yellow);
+        color: #332500;
+        box-shadow: 0 8px 18px rgba(255, 212, 59, 0.25);
+      }
+      .btn-purple {
+        background: var(--purple);
+        color: white;
+      }
+      .btn-light {
+        background: white;
+        color: var(--purple-dark);
+        border: 1px solid #e7ddf8;
+      }
+      .btn:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+        transform: none;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+      }
+      .context-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-top: 25px;
+      }
+      .context-card {
+        background: white;
+        border: 2px solid #eee6fa;
+        border-radius: 22px;
+        padding: 16px;
+        box-shadow: 0 10px 25px rgba(66, 23, 143, 0.07);
+        transition: 0.25s;
+        cursor: pointer;
+      }
+      .context-card:hover,
+      .context-card.selected {
+        border-color: var(--yellow);
+        transform: translateY(-4px);
+      }
+      .image-placeholder {
+        aspect-ratio: 4/3;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #f5efff, #fff8ca);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--purple-dark);
+        font-weight: 800;
+        border: 2px dashed #cbb9ed;
+        overflow: hidden;
+      }
+      .image-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .small {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .feedback {
+        margin-top: 18px;
+        background: var(--purple-soft);
+        border-left: 5px solid var(--purple);
+        padding: 16px 18px;
+        border-radius: 12px;
+        display: none;
+      }
+      .feedback.show {
+        display: block;
+        animation: fade 0.25s;
+      }
+      .question {
+        background: white;
+        border-radius: 24px;
+        padding: 28px;
+        box-shadow: var(--shadow);
+        max-width: 900px;
+        margin: 25px auto 0;
+      }
+      .option-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-top: 18px;
+      }
+      .option {
+        border: 2px solid #eee6fa;
+        background: white;
+        border-radius: 16px;
+        padding: 16px;
+        text-align: left;
+        font-weight: 800;
+        transition: 0.2s;
+      }
+      .option:hover {
+        border-color: var(--purple);
+        background: var(--purple-soft);
+      }
+      .option.correct {
+        border-color: var(--success);
+        background: #e9f8f1;
+      }
+      .option.wrong {
+        border-color: var(--danger);
+        background: #fdecea;
+      }
+      .target-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-top: 25px;
+      }
+      .target {
+        background: white;
+        border-radius: 20px;
+        padding: 22px;
+        border-top: 7px solid var(--purple);
+        box-shadow: 0 10px 25px rgba(66, 23, 143, 0.08);
+      }
+      .target:nth-child(even) {
+        border-top-color: var(--yellow);
+      }
+      .number {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: var(--yellow);
+        font-weight: 900;
+        color: #3d3000;
+        margin-bottom: 12px;
+      }
+      .concept {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+        align-items: center;
+        margin-top: 28px;
+      }
+      .definition {
+        background: white;
+        border-radius: 24px;
+        padding: 28px;
+        box-shadow: var(--shadow);
+      }
+      .definition strong {
+        color: var(--purple);
+      }
+      .timeline {
+        margin-top: 28px;
+        display: grid;
+        gap: 14px;
+      }
+      .period {
+        background: white;
+        border: 2px solid #eee6fa;
+        border-radius: 20px;
+        padding: 18px 20px;
+        display: grid;
+        grid-template-columns: 130px 1fr auto;
+        gap: 18px;
+        align-items: center;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .period:hover,
+      .period.open {
+        border-color: var(--purple);
+        box-shadow: 0 10px 25px rgba(108, 43, 217, 0.09);
+      }
+      .year {
+        font-weight: 900;
+        color: var(--purple-dark);
+        font-size: 17px;
+      }
+      .period-title {
+        font-weight: 900;
+      }
+      .period-detail {
+        display: none;
+        margin-top: 8px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .period.open .period-detail {
+        display: block;
+      }
+      .period-arrow {
+        font-size: 22px;
+        color: var(--purple);
+      }
+      .cards4 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+        margin-top: 25px;
+      }
+      .period-card {
+        background: white;
+        border-radius: 22px;
+        padding: 22px;
+        border: 2px solid #eee6fa;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(66, 23, 143, 0.07);
+      }
+      .period-card .tag {
+        display: inline-block;
+        padding: 6px 9px;
+        border-radius: 999px;
+        background: var(--yellow-soft);
+        font-size: 12px;
+        font-weight: 900;
+      }
+      .period-card h3 {
+        color: var(--purple-dark);
+        margin-top: 13px;
+      }
+      .period-card ul {
+        padding-left: 20px;
+        line-height: 1.7;
+        color: var(--muted);
+      }
+      .sort-area {
+        background: white;
+        border-radius: 26px;
+        padding: 26px;
+        box-shadow: var(--shadow);
+        margin-top: 24px;
+      }
+      .sort-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 20px 0;
+      }
+      .sort-card {
+        border: 2px solid #e5dbf5;
+        background: var(--purple-soft);
+        color: var(--purple-dark);
+        padding: 14px 16px;
+        border-radius: 14px;
+        font-weight: 900;
+        user-select: none;
+        cursor: pointer;
+      }
+      .sort-card.selected {
+        background: var(--yellow);
+        border-color: #e2bc00;
+        color: #3a2b00;
+      }
+      .sequence {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        min-height: 70px;
+        padding: 15px;
+        border: 2px dashed #cbb9ed;
+        border-radius: 16px;
+      }
+      .sequence span {
+        background: var(--purple);
+        color: white;
+        border-radius: 12px;
+        padding: 10px 13px;
+        font-weight: 800;
+      }
+      .analysis-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 25px;
+      }
+      .factor {
+        background: white;
+        border-radius: 20px;
+        padding: 22px;
+        border: 2px solid #eee6fa;
+        box-shadow: 0 10px 22px rgba(66, 23, 143, 0.06);
+        cursor: pointer;
+      }
+      .factor.active {
+        border-color: var(--yellow);
+        background: var(--yellow-soft);
+      }
+      .factor .icon {
+        font-size: 30px;
+      }
+      .case {
+        background: linear-gradient(135deg, var(--purple), #8b5be8);
+        color: white;
+        padding: 26px;
+        border-radius: 25px;
+        box-shadow: var(--shadow);
+        margin-top: 25px;
+      }
+      .case p {
+        color: #f7f2ff;
+      }
+      .reflection {
+        background: white;
+        border-radius: 24px;
+        padding: 25px;
+        box-shadow: var(--shadow);
+        margin-top: 22px;
+      }
+      textarea {
+        width: 100%;
+        min-height: 100px;
+        border: 2px solid #e4daf4;
+        border-radius: 14px;
+        padding: 14px;
+        resize: vertical;
+        outline: none;
+      }
+      textarea:focus {
+        border-color: var(--purple);
+      }
+      .summary-timeline {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 8px;
+        margin: 28px 0;
+      }
+      .summary-step {
+        background: white;
+        border-radius: 16px;
+        padding: 15px 10px;
+        text-align: center;
+        border: 2px solid #eee6fa;
+      }
+      .summary-step:nth-child(odd) {
+        border-color: #f0d957;
+        background: #fffdf0;
+      }
+      .summary-step b {
+        display: block;
+        color: var(--purple-dark);
+        font-size: 14px;
+      }
+      .summary-step span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .conclusion {
+        background: var(--purple);
+        color: white;
+        border-radius: 25px;
+        padding: 25px;
+        margin-top: 22px;
+      }
+      .footer-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 40;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        border-top: 1px solid #eee7f8;
+        padding: 11px 20px;
+      }
+      .footer-inner {
+        max-width: 1180px;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+      .slide-counter {
+        font-weight: 900;
+        color: var(--purple-dark);
+      }
+      .dots {
+        display: flex;
+        gap: 6px;
+        justify-content: center;
+        flex: 1;
+      }
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #d9d1e7;
+        cursor: pointer;
+      }
+      .dot.active {
+        background: var(--purple);
+        width: 22px;
+        border-radius: 10px;
+      }
+      @media (max-width: 900px) {
+        .cover,
+        .concept,
+        .analysis-grid {
+          grid-template-columns: 1fr;
+        }
+        .context-grid,
+        .target-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .summary-timeline {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      @media (max-width: 650px) {
+        .topbar {
+          padding: 10px 14px;
+        }
+        .brand {
+          display: none;
+        }
+        .deck {
+          padding: 22px 14px 100px;
+        }
+        .context-grid,
+        .target-grid,
+        .cards4,
+        .option-grid {
+          grid-template-columns: 1fr;
+        }
+        .period {
+          grid-template-columns: 1fr auto;
+        }
+        .period .year {
+          grid-column: 1/-1;
+        }
+        .summary-timeline {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        h1 {
+          letter-spacing: -1px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="brand">PPKn • Kelas XI</div>
+          <div class="progress-wrap">
+            <div class="progress-meta">
+              <span id="progressText">Slide 1 dari 10</span
+              ><span id="progressPercent">10%</span>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" id="progressBar"></div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <div class="deck">
+          <!-- SLIDE 1 -->
+          <section class="slide active">
+            <div class="cover">
+              <div class="cover-card">
+                <div class="cover-content">
+                  <span class="kicker">BAB 2 • PENDIDIKAN PANCASILA</span>
+                  <h1>Periodesasi Pemberlakuan UUD di Indonesia</h1>
+                  <p class="subtitle" style="color: #eee6ff">
+                    Menelusuri perjalanan konstitusi Indonesia dari masa
+                    kemerdekaan hingga UUD NRI Tahun 1945.
+                  </p>
+                  <div class="actions">
+                    <button class="btn btn-primary" onclick="goTo(2)">
+                      ▶ Mulai Pembelajaran
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-visual">
+                <div class="constitution-stack">
+                  <div class="paper"><strong>1945</strong>UUD 1945</div>
+                  <div class="paper"><strong>1950</strong>UUDS 1950</div>
+                  <div class="paper"><strong>SEKARANG</strong>UUD NRI 1945</div>
+                </div>
+              </div>
+            </div>
+            <div class="small">
+              CP: Menganalisis dinamika pemberlakuan UUD 1945 • TP: Menguraikan
+              periodesasi pemberlakuan UUD di Indonesia.
+            </div>
+          </section>
+
+          <!-- SLIDE 2 -->
+          <section class="slide">
+            <span class="kicker">KONTEKSTUAL</span>
+            <h2>UUD dalam Kehidupan Kita</h2>
+            <p class="subtitle">
+              Klik gambar yang menurut kalian memiliki hubungan dengan
+              konstitusi.
+            </p>
+
+            <div class="context-grid">
+              <!-- EDIT GAMBAR DI SINI: ganti src="gambar-pemantik-1.jpg" -->
+              <div class="context-card" onclick="contextPick(1)">
+                <div class="image-placeholder">
+                  <img src="assets/photo1.jpg" alt="siswa belajar" />
+                  <!-- <img src="gambar-pemantik-1.jpg" alt="Siswa belajar"> -->
+                </div>
+                <h3>📚 Belajar</h3>
+                <p class="small">Apa kaitannya dengan hak warga negara?</p>
+              </div>
+
+              <div class="context-card" onclick="contextPick(2)">
+                <div class="image-placeholder">
+                  <img src="assets/photo2.jpg" alt="siswa belajar" />
+                  <!-- <img src="gambar-pemantik-2.jpg" alt="Pemilihan OSIS"> -->
+                </div>
+                <h3>🗳️ Pemilihan OSIS</h3>
+                <p class="small">Apa kaitannya dengan demokrasi?</p>
+              </div>
+
+              <div class="context-card" onclick="contextPick(3)">
+                <div class="image-placeholder">
+                  <img src="assets/photo3.jpg" alt="siswa belajar" />
+                  <!-- <img src="gambar-pemantik-3.jpg" alt="Menyampaikan pendapat"> -->
+                </div>
+                <h3>💬 Menyampaikan Pendapat</h3>
+                <p class="small">Apa kaitannya dengan hak warga negara?</p>
+              </div>
+
+              <div class="context-card" onclick="contextPick(4)">
+                <div class="image-placeholder">
+                  <img src="assets/photo4.jpg" alt="siswa belajar" />
+                  <!-- <img src="gambar-pemantik-4.jpg" alt="Keberagaman"> -->
+                </div>
+                <h3>🤝 Keberagaman</h3>
+                <p class="small">
+                  Bagaimana konstitusi menjadi dasar kehidupan bernegara?
+                </p>
+              </div>
+            </div>
+
+            <div class="feedback" id="contextFeedback">
+              <strong>💡 Hubungannya:</strong>
+              <span id="contextText"
+                >Pilih salah satu gambar untuk melihat kaitannya dengan
+                konstitusi.</span
+              >
+            </div>
+          </section>
+
+          <!-- SLIDE 3 -->
+          <section class="slide">
+            <span class="kicker">PERTANYAAN PEMANTIK</span>
+            <h2>Apakah Konstitusi Indonesia Selalu Sama?</h2>
+            <div class="question">
+              <p style="font-size: 21px; font-weight: 800">
+                Apakah konstitusi yang berlaku di Indonesia selalu sama sejak
+                Indonesia merdeka?
+              </p>
+              <div class="option-grid">
+                <button class="option" onclick="answerPrompt(this, false)">
+                  A. Ya, selalu sama
+                </button>
+                <button class="option" onclick="answerPrompt(this, true)">
+                  B. Tidak, pernah mengalami perubahan
+                </button>
+                <button class="option" onclick="answerPrompt(this, false)">
+                  C. Belum tahu
+                </button>
+              </div>
+              <div class="feedback" id="promptFeedback"></div>
+            </div>
+            <div
+              class="question"
+              style="margin-top: 18px; background: var(--yellow-soft)"
+            >
+              <strong>🔎 Pertanyaan lanjutan:</strong>
+              <p style="margin-bottom: 0">
+                Jika pernah berubah, <b>kapan</b> perubahan itu terjadi dan
+                <b>mengapa</b> Indonesia mengalami pergantian konstitusi?
+              </p>
+            </div>
+          </section>
+
+          <!-- SLIDE 4 -->
+          <section class="slide">
+            <span class="kicker">TUJUAN PEMBELAJARAN</span>
+            <h2>Setelah Pembelajaran, Saya Dapat...</h2>
+            <div class="target-grid">
+              <div class="target">
+                <div class="number">01</div>
+                <h3>Memahami</h3>
+                <p>Menjelaskan pengertian periodesasi pemberlakuan UUD.</p>
+              </div>
+              <div class="target">
+                <div class="number">02</div>
+                <h3>Mengidentifikasi</h3>
+                <p>Menyebutkan konstitusi yang berlaku pada setiap periode.</p>
+              </div>
+              <div class="target">
+                <div class="number">03</div>
+                <h3>Menguraikan</h3>
+                <p>
+                  Menjelaskan urutan periodesasi pemberlakuan UUD di Indonesia.
+                </p>
+              </div>
+              <div class="target">
+                <div class="number">04</div>
+                <h3>Menghubungkan</h3>
+                <p>
+                  Menghubungkan perubahan konstitusi dengan dinamika
+                  ketatanegaraan.
+                </p>
+              </div>
+            </div>
+            <div class="conclusion" style="margin-top: 28px">
+              <b>🎯 Tantangan belajar:</b>
+              <p style="margin-bottom: 0">
+                Saya mampu menjawab tiga pertanyaan:
+                <b>UUD apa yang berlaku?</b> <b>Kapan berlaku?</b> dan
+                <b>Mengapa terjadi perubahan?</b>
+              </p>
+            </div>
+          </section>
+
+          <!-- SLIDE 5 -->
+          <section class="slide">
+            <span class="kicker">KONSEP DASAR</span>
+            <h2>Apa Itu Periodesasi?</h2>
+            <div class="concept">
+              <div class="definition">
+                <h3>📌 Periodesasi</h3>
+                <p>
+                  Pembagian suatu perjalanan sejarah ke dalam beberapa periode
+                  berdasarkan peristiwa atau karakteristik tertentu.
+                </p>
+                <h3 style="margin-top: 20px">
+                  📜 Periodesasi Pemberlakuan UUD
+                </h3>
+                <p>
+                  Pembagian perjalanan ketatanegaraan Indonesia berdasarkan
+                  <strong
+                    >konstitusi yang berlaku pada periode tertentu.</strong
+                  >
+                </p>
+              </div>
+              <div class="hero-visual" style="min-height: 300px">
+                <div class="constitution-stack">
+                  <div class="paper">
+                    <strong>UUD 1945</strong>Awal kemerdekaan
+                  </div>
+                  <div class="paper"><strong>RIS</strong>1949–1950</div>
+                  <div class="paper"><strong>UUDS</strong>1950–1959</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SLIDE 6 -->
+          <section class="slide">
+            <span class="kicker">MATERI UTAMA</span>
+            <h2>Timeline Periodesasi Konstitusi Indonesia</h2>
+            <p class="subtitle">
+              Klik setiap periode untuk membuka penjelasan.
+            </p>
+
+            <div class="timeline">
+              <div class="period" onclick="togglePeriod(this)">
+                <div class="year">18 Agustus 1945<br />27 Desember 1949</div>
+                <div>
+                  <div class="period-title">📜 UUD 1945</div>
+                  <div class="period-detail">
+                    PPKI mengesahkan UUD 1945 pada 18 Agustus 1945 sebagai
+                    konstitusi negara Indonesia.
+                  </div>
+                </div>
+                <div class="period-arrow">+</div>
+              </div>
+              <div class="period" onclick="togglePeriod(this)">
+                <div class="year">27 Desember 1949<br />17 Agustus 1950</div>
+                <div>
+                  <div class="period-title">📜 Konstitusi RIS 1949</div>
+                  <div class="period-detail">
+                    Indonesia berbentuk Republik Indonesia Serikat (RIS) dalam
+                    periode setelah penyerahan kedaulatan.
+                  </div>
+                </div>
+                <div class="period-arrow">+</div>
+              </div>
+              <div class="period" onclick="togglePeriod(this)">
+                <div class="year">17 Agustus 1950<br />5 Juli 1959</div>
+                <div>
+                  <div class="period-title">📜 UUDS 1950</div>
+                  <div class="period-detail">
+                    Indonesia kembali menjadi negara kesatuan dan menggunakan
+                    Undang-Undang Dasar Sementara Tahun 1950.
+                  </div>
+                </div>
+                <div class="period-arrow">+</div>
+              </div>
+              <div class="period" onclick="togglePeriod(this)">
+                <div class="year">5 Juli 1959<br />1999</div>
+                <div>
+                  <div class="period-title">📜 UUD 1945 Kembali Berlaku</div>
+                  <div class="period-detail">
+                    Dekret Presiden 5 Juli 1959 memberlakukan kembali UUD 1945
+                    dan menyatakan UUDS 1950 tidak berlaku lagi.
+                  </div>
+                </div>
+                <div class="period-arrow">+</div>
+              </div>
+              <div class="period" onclick="togglePeriod(this)">
+                <div class="year">1999–2002</div>
+                <div>
+                  <div class="period-title">
+                    📜 Empat Kali Perubahan UUD 1945
+                  </div>
+                  <div class="period-detail">
+                    Pada masa Reformasi, UUD 1945 mengalami empat tahap
+                    perubahan pada 1999, 2000, 2001, dan 2002.
+                  </div>
+                </div>
+                <div class="period-arrow">+</div>
+              </div>
+              <div class="period" onclick="togglePeriod(this)">
+                <div class="year">2002–sekarang</div>
+                <div>
+                  <div class="period-title">🇮🇩 UUD NRI Tahun 1945</div>
+                  <div class="period-detail">
+                    UUD NRI Tahun 1945 merupakan UUD 1945 yang telah mengalami
+                    empat kali perubahan.
+                  </div>
+                </div>
+                <div class="period-arrow">+</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SLIDE 7 -->
+          <section class="slide">
+            <span class="kicker">EKSPLORASI MATERI</span>
+            <h2>Empat Periode Penting</h2>
+            <div class="cards4">
+              <div class="period-card">
+                <span class="tag">PERIODE 1</span>
+                <h3>UUD 1945</h3>
+                <b>18 Agustus 1945 – 27 Desember 1949</b>
+                <ul>
+                  <li>Disahkan PPKI pada 18 Agustus 1945.</li>
+                  <li>Menjadi konstitusi negara setelah kemerdekaan.</li>
+                </ul>
+              </div>
+              <div class="period-card">
+                <span class="tag">PERIODE 2</span>
+                <h3>Konstitusi RIS 1949</h3>
+                <b>27 Desember 1949 – 17 Agustus 1950</b>
+                <ul>
+                  <li>Indonesia berbentuk Republik Indonesia Serikat.</li>
+                  <li>Berlaku setelah penyerahan kedaulatan.</li>
+                </ul>
+              </div>
+              <div class="period-card">
+                <span class="tag">PERIODE 3</span>
+                <h3>UUDS 1950</h3>
+                <b>17 Agustus 1950 – 5 Juli 1959</b>
+                <ul>
+                  <li>Indonesia kembali menjadi negara kesatuan.</li>
+                  <li>Menggunakan UUD Sementara Tahun 1950.</li>
+                </ul>
+              </div>
+              <div class="period-card">
+                <span class="tag">PERIODE 4</span>
+                <h3>Kembali ke UUD 1945</h3>
+                <b>5 Juli 1959 – sekarang</b>
+                <ul>
+                  <li>
+                    UUD 1945 diberlakukan kembali melalui Dekret Presiden 5 Juli
+                    1959.
+                  </li>
+                  <li>Mengalami empat kali perubahan pada 1999–2002.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- SLIDE 8 -->
+          <section class="slide">
+            <span class="kicker">AKTIVITAS INTERAKTIF</span>
+            <h2>🧩 Susun Perjalanannya!</h2>
+            <p class="subtitle">
+              Klik kartu sesuai urutan yang benar. Jika salah, ulangi dari awal.
+            </p>
+            <div class="sort-area">
+              <h3>Pilih urutan:</h3>
+              <div class="sort-cards" id="sortCards">
+                <button
+                  class="sort-card"
+                  onclick="chooseSort(this, 'UUDS 1950')"
+                >
+                  UUDS 1950
+                </button>
+                <button
+                  class="sort-card"
+                  onclick="chooseSort(this, 'UUD 1945')"
+                >
+                  UUD 1945
+                </button>
+                <button
+                  class="sort-card"
+                  onclick="chooseSort(this, 'Konstitusi RIS 1949')"
+                >
+                  Konstitusi RIS 1949
+                </button>
+                <button
+                  class="sort-card"
+                  onclick="chooseSort(this, 'UUD NRI Tahun 1945')"
+                >
+                  UUD NRI Tahun 1945
+                </button>
+                <button
+                  class="sort-card"
+                  onclick="chooseSort(this, 'UUD 1945 kembali berlaku')"
+                >
+                  UUD 1945 kembali berlaku
+                </button>
+              </div>
+              <h3>Urutan pilihanmu:</h3>
+              <div class="sequence" id="sequence">
+                <span style="background: #eee; color: #777"
+                  >Belum ada pilihan...</span
+                >
+              </div>
+              <div class="actions">
+                <button class="btn btn-purple" onclick="checkSequence()">
+                  ✓ Periksa Jawaban
+                </button>
+                <button class="btn btn-light" onclick="resetSequence()">
+                  ↺ Ulangi
+                </button>
+              </div>
+              <div class="feedback" id="sortFeedback"></div>
+            </div>
+          </section>
+
+          <!-- SLIDE 9 -->
+          <section class="slide">
+            <span class="kicker">ANALISIS</span>
+            <h2>Mengapa Konstitusi Mengalami Perubahan?</h2>
+            <p class="subtitle">
+              Klik faktor berikut untuk melihat kaitannya dengan perjalanan
+              konstitusi Indonesia.
+            </p>
+
+            <div class="analysis-grid">
+              <div class="factor" onclick="factorPick(this)">
+                <div class="icon">🏛️</div>
+                <h3>Bentuk Negara</h3>
+                <p class="small">
+                  Perubahan bentuk negara dapat memengaruhi konstitusi yang
+                  berlaku.
+                </p>
+              </div>
+              <div class="factor" onclick="factorPick(this)">
+                <div class="icon">⚖️</div>
+                <h3>Sistem Pemerintahan</h3>
+                <p class="small">
+                  Perubahan penyelenggaraan pemerintahan berkaitan dengan
+                  ketentuan konstitusional.
+                </p>
+              </div>
+              <div class="factor" onclick="factorPick(this)">
+                <div class="icon">🗳️</div>
+                <h3>Dinamika Politik</h3>
+                <p class="small">
+                  Perkembangan politik nasional menjadi bagian dari perjalanan
+                  ketatanegaraan.
+                </p>
+              </div>
+              <div class="factor" onclick="factorPick(this)">
+                <div class="icon">📜</div>
+                <h3>Kebutuhan Ketatanegaraan</h3>
+                <p class="small">
+                  Perubahan konstitusi dapat dilakukan melalui mekanisme yang
+                  ditentukan dalam konstitusi.
+                </p>
+              </div>
+            </div>
+
+            <div class="case">
+              <h3>💡 Tantangan Analisis</h3>
+              <p>
+                Bayangkan Indonesia tidak pernah mengalami perubahan konstitusi
+                sejak 1945.
+              </p>
+              <p>
+                <b
+                  >Menurut kalian, apakah dinamika kehidupan ketatanegaraan
+                  Indonesia akan tetap sama? Jelaskan alasanmu.</b
+                >
+              </p>
+              <textarea
+                id="analysisAnswer"
+                placeholder="Tuliskan jawabanmu di sini..."
+              ></textarea>
+              <button
+                class="btn btn-primary"
+                style="margin-top: 12px"
+                onclick="saveAnalysis()"
+              >
+                Simpan Refleksi
+              </button>
+              <div
+                id="analysisSaved"
+                style="margin-top: 10px; font-weight: 800"
+              ></div>
+            </div>
+          </section>
+
+          <!-- SLIDE 10 -->
+          <section class="slide">
+            <span class="kicker">PENUTUP</span>
+            <h2>🇮🇩 Perjalanan yang Kita Temukan</h2>
+
+            <div class="summary-timeline">
+              <div class="summary-step">
+                <b>1945–1949</b><span>UUD 1945</span>
+              </div>
+              <div class="summary-step">
+                <b>1949–1950</b><span>Konstitusi RIS</span>
+              </div>
+              <div class="summary-step">
+                <b>1950–1959</b><span>UUDS 1950</span>
+              </div>
+              <div class="summary-step">
+                <b>1959–1999</b><span>UUD 1945</span>
+              </div>
+              <div class="summary-step">
+                <b>1999–2002</b><span>4 Perubahan</span>
+              </div>
+              <div class="summary-step">
+                <b>2002–sekarang</b><span>UUD NRI 1945</span>
+              </div>
+            </div>
+
+            <div class="conclusion">
+              <h3>📌 Kesimpulan</h3>
+              <p>
+                Periodesasi pemberlakuan UUD menunjukkan dinamika perjalanan
+                ketatanegaraan Indonesia. Indonesia pernah menggunakan UUD 1945,
+                Konstitusi RIS 1949, dan UUDS 1950. Setelah Dekret Presiden 5
+                Juli 1959, UUD 1945 kembali berlaku. Pada masa Reformasi, UUD
+                1945 mengalami empat kali perubahan pada 1999–2002 dan menjadi
+                UUD NRI Tahun 1945.
+              </p>
+            </div>
+
+            <div class="reflection">
+              <h3>🎫 Exit Ticket</h3>
+              <p><b>1.</b> Hari ini saya memahami bahwa...</p>
+              <textarea
+                id="exit1"
+                placeholder="Tuliskan pemahamanmu..."
+              ></textarea>
+              <p><b>2.</b> Hal yang paling menarik bagi saya adalah...</p>
+              <textarea
+                id="exit2"
+                placeholder="Tuliskan hal yang menarik..."
+              ></textarea>
+              <p><b>3.</b> Satu hal yang masih ingin saya ketahui adalah...</p>
+              <textarea
+                id="exit3"
+                placeholder="Tuliskan pertanyaanmu..."
+              ></textarea>
+              <div class="actions">
+                <button class="btn btn-purple" onclick="saveExit()">
+                  ✓ Simpan Exit Ticket
+                </button>
+                <button class="btn btn-primary" onclick="goTo(1)">
+                  ↺ Kembali ke Awal
+                </button>
+              </div>
+              <div
+                id="exitSaved"
+                style="
+                  margin-top: 12px;
+                  font-weight: 800;
+                  color: var(--success);
+                "
+              ></div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <footer class="footer-nav">
+        <div class="footer-inner">
+          <button class="btn btn-light" id="prevBtn" onclick="prevSlide()">
+            ← Sebelumnya
+          </button>
+          <div class="dots" id="dots"></div>
+          <div class="slide-counter" id="slideCounter">1 / 10</div>
+          <button class="btn btn-purple" id="nextBtn" onclick="nextSlide()">
+            Berikutnya →
+          </button>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const TOTAL_SLIDES = 10;
+      let currentSlide = 1;
+      let chosenSequence = [];
+      const correctSequence = [
+        "UUD 1945",
+        "Konstitusi RIS 1949",
+        "UUDS 1950",
+        "UUD 1945 kembali berlaku",
+        "UUD NRI Tahun 1945",
+      ];
+
+      const contextTexts = {
+        1: "Hak memperoleh pendidikan merupakan salah satu contoh hak warga negara yang berkaitan dengan kehidupan konstitusional.",
+        2: "Pemilihan OSIS dapat menjadi contoh sederhana praktik partisipasi dan demokrasi di lingkungan sekolah.",
+        3: "Kebebasan menyampaikan pendapat merupakan bagian dari kehidupan demokratis yang memiliki dasar konstitusional.",
+        4: "Konstitusi menjadi salah satu dasar dalam mengatur kehidupan bermasyarakat, berbangsa, dan bernegara.",
+      };
+
+      function goTo(n) {
+        if (n < 1 || n > TOTAL_SLIDES) return;
+        currentSlide = n;
+        document
+          .querySelectorAll(".slide")
+          .forEach((s, i) => s.classList.toggle("active", i === n - 1));
+        updateNav();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      function nextSlide() {
+        if (currentSlide < TOTAL_SLIDES) goTo(currentSlide + 1);
+      }
+      function prevSlide() {
+        if (currentSlide > 1) goTo(currentSlide - 1);
+      }
+
+      function updateNav() {
+        document.getElementById("progressText").textContent =
+          `Slide ${currentSlide} dari ${TOTAL_SLIDES}`;
+        document.getElementById("progressPercent").textContent =
+          `${currentSlide * 10}%`;
+        document.getElementById("progressBar").style.width =
+          `${currentSlide * 10}%`;
+        document.getElementById("slideCounter").textContent =
+          `${currentSlide} / ${TOTAL_SLIDES}`;
+        document.getElementById("prevBtn").disabled = currentSlide === 1;
+        document.getElementById("nextBtn").disabled =
+          currentSlide === TOTAL_SLIDES;
+        const dots = document.getElementById("dots");
+        dots.innerHTML = "";
+        for (let i = 1; i <= TOTAL_SLIDES; i++) {
+          const d = document.createElement("span");
+          d.className = "dot" + (i === currentSlide ? " active" : "");
+          d.title = `Slide ${i}`;
+          d.onclick = () => goTo(i);
+          dots.appendChild(d);
+        }
+      }
+
+      function contextPick(n) {
+        document
+          .querySelectorAll(".context-card")
+          .forEach((c) => c.classList.remove("selected"));
+        event.currentTarget.classList.add("selected");
+        const box = document.getElementById("contextFeedback");
+        box.classList.add("show");
+        document.getElementById("contextText").textContent = contextTexts[n];
+      }
+
+      function answerPrompt(btn, correct) {
+        document
+          .querySelectorAll("#promptFeedback")
+          .forEach((x) => x.classList.add("show"));
+        document
+          .querySelectorAll(".question .option")
+          .forEach((x) => x.classList.remove("correct", "wrong"));
+        btn.classList.add(correct ? "correct" : "wrong");
+        const f = document.getElementById("promptFeedback");
+        f.innerHTML = correct
+          ? "<strong>✅ Tepat!</strong> Indonesia mengalami beberapa periode pemberlakuan konstitusi."
+          : "<strong>💡 Belum tepat.</strong> Coba ingat kembali bahwa Indonesia pernah menggunakan Konstitusi RIS dan UUDS 1950.";
+        f.classList.add("show");
+      }
+
+      function togglePeriod(el) {
+        const wasOpen = el.classList.contains("open");
+        document.querySelectorAll(".period").forEach((p) => {
+          p.classList.remove("open");
+          p.querySelector(".period-arrow").textContent = "+";
+        });
+        if (!wasOpen) {
+          el.classList.add("open");
+          el.querySelector(".period-arrow").textContent = "−";
+        }
+      }
+
+      function chooseSort(btn, value) {
+        if (chosenSequence.includes(value)) return;
+        chosenSequence.push(value);
+        btn.classList.add("selected");
+        renderSequence();
+      }
+      function renderSequence() {
+        const area = document.getElementById("sequence");
+        area.innerHTML = "";
+        if (chosenSequence.length === 0) {
+          area.innerHTML =
+            '<span style="background:#eee;color:#777">Belum ada pilihan...</span>';
+          return;
+        }
+        chosenSequence.forEach((x, i) => {
+          const s = document.createElement("span");
+          s.textContent = `${i + 1}. ${x}`;
+          area.appendChild(s);
+        });
+      }
+      function resetSequence() {
+        chosenSequence = [];
+        document
+          .querySelectorAll(".sort-card")
+          .forEach((x) => x.classList.remove("selected"));
+        document.getElementById("sortFeedback").classList.remove("show");
+        renderSequence();
+      }
+      function checkSequence() {
+        const f = document.getElementById("sortFeedback");
+        f.classList.add("show");
+        if (chosenSequence.length !== correctSequence.length) {
+          f.innerHTML =
+            "<strong>⚠️ Belum lengkap.</strong> Pilih semua lima kartu terlebih dahulu.";
+          return;
+        }
+        const ok = chosenSequence.every((x, i) => x === correctSequence[i]);
+        if (ok) {
+          f.innerHTML =
+            "<strong>🎉 Benar!</strong> Urutan periodesasi sudah tepat. Kamu telah berhasil menelusuri perjalanan konstitusi Indonesia.";
+        } else {
+          f.innerHTML =
+            "<strong>💡 Belum tepat.</strong> Ingat urutannya: UUD 1945 → Konstitusi RIS 1949 → UUDS 1950 → UUD 1945 kembali berlaku → UUD NRI Tahun 1945.";
+        }
+      }
+      function factorPick(el) {
+        document
+          .querySelectorAll(".factor")
+          .forEach((x) => x.classList.remove("active"));
+        el.classList.add("active");
+      }
+      function saveAnalysis() {
+        const v = document.getElementById("analysisAnswer").value.trim();
+        document.getElementById("analysisSaved").textContent = v
+          ? "✓ Refleksi tersimpan pada halaman ini."
+          : "Silakan tuliskan jawaban terlebih dahulu.";
+      }
+      function saveExit() {
+        const values = ["exit1", "exit2", "exit3"].map((id) =>
+          document.getElementById(id).value.trim(),
+        );
+        document.getElementById("exitSaved").textContent = values.every(Boolean)
+          ? "✓ Exit ticket sudah diisi. Terima kasih!"
+          : "⚠️ Lengkapi ketiga jawaban terlebih dahulu.";
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") nextSlide();
+        if (e.key === "ArrowLeft") prevSlide();
+      });
+      updateNav();
+    </script>
+  </body>
+</html>
