@@ -1,0 +1,1854 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asesmen Diagnostik Kognitif | Hafadzatun Adzmi, S.Pd</title>
+    <style>
+      :root {
+        --primary: #5b21b6;
+        --primary2: #7c3aed;
+        --secondary: #f59e0b;
+        --bg: #f6f7fb;
+        --card: #ffffff;
+        --text: #172033;
+        --muted: #667085;
+        --border: #e7e8ef;
+        --success: #15803d;
+        --danger: #dc2626;
+        --shadow: 0 18px 50px rgba(30, 20, 70, 0.1);
+        --radius: 22px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(124, 58, 237, 0.1),
+            transparent 32%
+          ),
+          radial-gradient(
+            circle at top right,
+            rgba(245, 158, 11, 0.1),
+            transparent 30%
+          ),
+          var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+      }
+
+      button,
+      input,
+      textarea {
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+      }
+      .hidden {
+        display: none !important;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(231, 232, 239, 0.8);
+      }
+      .nav {
+        max-width: 1180px;
+        margin: auto;
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+      }
+      .brand-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        color: white;
+        background: linear-gradient(135deg, var(--primary), var(--primary2));
+        box-shadow: 0 8px 22px rgba(85, 43, 152, 0.25);
+        font-size: 21px;
+      }
+      .brand small {
+        display: block;
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 11px;
+        margin-top: 2px;
+      }
+      .nav-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .container {
+        max-width: 1180px;
+        margin: auto;
+        padding: 34px 20px 60px;
+      }
+      .hero {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          #eb3a1b 0%,
+          #df6937 55%,
+          #cc7157 100%
+        );
+        color: white;
+        border-radius: 30px;
+        padding: 34px;
+        box-shadow: var(--shadow);
+        margin-bottom: 24px;
+      }
+      .hero:after {
+        content: "";
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        right: -100px;
+        top: -140px;
+        background: rgba(255, 255, 255, 0.09);
+      }
+      .hero-grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1fr 160px;
+        gap: 25px;
+        align-items: center;
+      }
+      .hero h1 {
+        font-size: clamp(28px, 5vw, 48px);
+        line-height: 1.05;
+        margin: 8px 0 12px;
+      }
+      .hero p {
+        max-width: 700px;
+        color: rgba(255, 255, 255, 0.86);
+        line-height: 1.7;
+        margin: 0;
+      }
+      .teacher {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 9px;
+        text-align: center;
+      }
+      .teacher-photo {
+        width: 125px;
+        height: 125px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid rgba(255, 255, 255, 0.65);
+        background: #fff;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+      }
+      .teacher-placeholder {
+        display: grid;
+        place-items: center;
+        color: #6b7280;
+        font-size: 42px;
+        font-weight: 800;
+        background: linear-gradient(135deg, #fff, #ece9fe);
+      }
+      .teacher strong {
+        font-size: 14px;
+      }
+      .teacher span {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.75);
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 25px;
+        margin-bottom: 20px;
+      }
+
+      .section-title {
+        margin: 0 0 7px;
+        font-size: 24px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 11px;
+        border-radius: 999px;
+        background: #ede9fe;
+        color: #f33131;
+        font-weight: 800;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .login-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      label {
+        display: block;
+        font-weight: 750;
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+      input,
+      textarea {
+        width: 100%;
+        border: 1px solid var(--border);
+        background: #fbfbfd;
+        border-radius: 14px;
+        padding: 13px 15px;
+        outline: none;
+        transition: 0.2s;
+      }
+      input:focus,
+      textarea:focus {
+        border-color: var(--primary2);
+        box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+        background: white;
+      }
+      textarea {
+        min-height: 150px;
+        resize: vertical;
+        line-height: 1.6;
+      }
+
+      .btn {
+        border: 0;
+        border-radius: 13px;
+        padding: 12px 17px;
+        font-weight: 800;
+        transition: 0.2s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary), var(--primary2));
+        color: white;
+        box-shadow: 0 8px 18px rgba(15, 14, 14, 0.253);
+      }
+      .btn-secondary {
+        background: #f3f4f6;
+        color: #273244;
+      }
+      .btn-warning {
+        background: #fef3c7;
+        color: #92400e;
+      }
+      .btn-danger {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+      .btn-success {
+        background: #dcfce7;
+        color: #166534;
+      }
+      .btn:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .instructions {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 20px;
+      }
+      .info-box {
+        background: #f8f7ff;
+        border: 1px solid #e9e4ff;
+        border-radius: 16px;
+        padding: 15px;
+      }
+      .info-box b {
+        display: block;
+        margin-bottom: 5px;
+      }
+      .info-box span {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .quiz-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        position: sticky;
+        top: 73px;
+        z-index: 20;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(12px);
+        padding: 13px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .progress-wrap {
+        flex: 1;
+      }
+      .progress-label {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      .progress {
+        height: 9px;
+        background: #eeeef4;
+        border-radius: 999px;
+        overflow: hidden;
+      }
+      .progress > div {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary), #dd4747);
+        transition: 0.35s;
+      }
+      .timer {
+        min-width: 92px;
+        text-align: center;
+        padding: 10px 12px;
+        border-radius: 13px;
+        background: #111827;
+        color: white;
+        font-weight: 900;
+        letter-spacing: 0.03em;
+      }
+      .timer.warning {
+        background: #b45309;
+        animation: pulse 1s infinite;
+      }
+      .timer.danger {
+        background: #b91c1c;
+        animation: pulse 0.6s infinite;
+      }
+      @keyframes pulse {
+        50% {
+          transform: scale(1.03);
+        }
+      }
+
+      .reading {
+        border-left: 5px solid var(--secondary);
+        background: #fffbeb;
+        padding: 19px;
+        border-radius: 15px;
+        margin: 18px 0;
+        line-height: 1.75;
+      }
+      .reading h3 {
+        margin: 0 0 8px;
+        color: #92400e;
+      }
+      .reading p {
+        margin: 0 0 9px;
+      }
+      .question-number {
+        color: var(--primary);
+        font-weight: 900;
+        font-size: 14px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+      }
+      .question-text {
+        font-size: 20px;
+        font-weight: 800;
+        line-height: 1.5;
+        margin: 0 0 18px;
+      }
+      .option {
+        position: relative;
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 15px;
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        margin: 10px 0;
+        background: #fff;
+        transition: 0.2s;
+      }
+      .option:hover {
+        border-color: #c4b5fd;
+        background: #faf9ff;
+      }
+      .option input {
+        width: auto;
+        margin-top: 3px;
+        accent-color: var(--primary);
+      }
+      .option.selected {
+        border-color: #ea5c5c;
+        background: #f5f3ff;
+      }
+      .statement {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 15px;
+        align-items: center;
+        padding: 15px;
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        margin: 10px 0;
+      }
+      .bs-buttons {
+        display: flex;
+        gap: 8px;
+      }
+      .bs-buttons label {
+        margin: 0;
+        padding: 9px 13px;
+        border-radius: 10px;
+        background: #f3f4f6;
+        cursor: pointer;
+        font-size: 13px;
+      }
+      .bs-buttons input {
+        width: auto;
+        margin-right: 4px;
+      }
+      .short-answer {
+        margin-top: 15px;
+      }
+      .nav-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 22px;
+      }
+      .lock-note {
+        margin-top: 12px;
+        padding: 11px 14px;
+        border-radius: 12px;
+        background: #f8fafc;
+        color: #64748b;
+        font-size: 12px;
+      }
+
+      .result-hero {
+        text-align: center;
+        padding: 35px;
+        background: linear-gradient(135deg, #f5f3ff, #fff);
+        border: 1px solid #e9e4ff;
+        border-radius: 24px;
+      }
+      .score-circle {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin: 0 auto 15px;
+        display: grid;
+        place-items: center;
+        background: conic-gradient(
+          var(--primary) var(--score-percent),
+          #e9e7ef 0
+        );
+        position: relative;
+      }
+      .score-circle:after {
+        content: "";
+        position: absolute;
+        inset: 12px;
+        border-radius: 50%;
+        background: white;
+      }
+      .score-inner {
+        position: relative;
+        z-index: 1;
+        font-weight: 900;
+        font-size: 30px;
+        color: var(--primary);
+      }
+      .result-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-top: 22px;
+      }
+      .stat {
+        padding: 16px;
+        background: #fafafa;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+      }
+      .stat strong {
+        display: block;
+        font-size: 24px;
+      }
+      .stat span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .answer-review {
+        margin-top: 25px;
+      }
+      .review-item {
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 17px;
+        margin: 10px 0;
+      }
+      .review-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .correct {
+        color: var(--success);
+        font-weight: 800;
+      }
+      .incorrect {
+        color: var(--danger);
+        font-weight: 800;
+      }
+      .answer-box {
+        margin-top: 10px;
+        padding: 12px;
+        border-radius: 12px;
+        background: #f8fafc;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      .badge {
+        display: inline-flex;
+        padding: 5px 9px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 800;
+      }
+      .badge-green {
+        background: #dcfce7;
+        color: #166534;
+      }
+      .badge-red {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+      .badge-purple {
+        background: #ede9fe;
+        color: #5b21b6;
+      }
+
+      .dashboard-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      .dashboard-table th,
+      .dashboard-table td {
+        padding: 11px;
+        border-bottom: 1px solid var(--border);
+        text-align: left;
+        vertical-align: top;
+      }
+      .dashboard-table th {
+        background: #fafafa;
+      }
+      .table-wrap {
+        overflow: auto;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+      }
+      .dashboard-tools {
+        display: flex;
+        gap: 9px;
+        flex-wrap: wrap;
+        margin: 15px 0;
+      }
+      .status {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 7px;
+      }
+      .footer {
+        text-align: center;
+        color: #98a2b3;
+        font-size: 12px;
+        padding: 30px 10px;
+      }
+      .teacher-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+        padding: 20px;
+        background: rgba(15, 23, 42, 0.68);
+        backdrop-filter: blur(7px);
+      }
+      .teacher-modal-box {
+        width: min(440px, 100%);
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 28px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+        position: relative;
+        animation: modalIn 0.2s ease-out;
+      }
+      @keyframes modalIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px) scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .teacher-modal-close {
+        position: absolute;
+        right: 14px;
+        top: 12px;
+        border: 0;
+        background: #f3f4f6;
+        color: #475467;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        font-size: 23px;
+        line-height: 1;
+      }
+      .teacher-login-icon {
+        width: 58px;
+        height: 58px;
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        background: #ede9fe;
+        margin-bottom: 14px;
+        font-size: 26px;
+      }
+      .teacher-modal-box h2 {
+        margin: 12px 0 7px;
+        font-size: 25px;
+      }
+      .teacher-modal-box label {
+        margin-top: 20px;
+      }
+      .teacher-login-message {
+        min-height: 20px;
+        margin-top: 8px;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--danger);
+      }
+      .teacher-modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 9px;
+        margin-top: 10px;
+      }
+      body.modal-open {
+        overflow: hidden;
+      }
+
+      @media (max-width: 760px) {
+        .hero-grid,
+        .login-grid {
+          grid-template-columns: 1fr;
+        }
+        .teacher {
+          align-items: flex-start;
+          text-align: left;
+          flex-direction: row;
+        }
+        .teacher-photo {
+          width: 78px;
+          height: 78px;
+        }
+        .instructions,
+        .result-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .quiz-head {
+          top: 63px;
+        }
+        .statement {
+          grid-template-columns: 1fr;
+        }
+        .nav {
+          padding: 10px 13px;
+        }
+        .container {
+          padding: 22px 13px 45px;
+        }
+        .hero {
+          padding: 25px 20px;
+        }
+        .hero h1 {
+          font-size: 31px;
+        }
+        .question-text {
+          font-size: 18px;
+        }
+        .nav-row {
+          flex-direction: column;
+        }
+        .nav-row .btn {
+          width: 100%;
+        }
+      }
+      @media (max-width: 480px) {
+        .instructions,
+        .result-grid {
+          grid-template-columns: 1fr;
+        }
+        .brand small {
+          display: none;
+        }
+        .hero {
+          border-radius: 22px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="topbar">
+      <nav class="nav">
+        <div class="brand">
+          <div class="brand-icon">P</div>
+          <div>
+            Asesmen Diagnostik
+            <small>Periodesasi UUD NRI Tahun 1945</small>
+          </div>
+        </div>
+        <div class="nav-actions">
+          <button
+            class="btn btn-secondary"
+            id="dashboardBtn"
+            onclick="openDashboard()"
+            title="Khusus Guru — memerlukan kata sandi"
+          >
+            🔐 Mode Guru
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section id="loginPage">
+        <div class="hero">
+          <div class="hero-grid">
+            <div>
+              <span
+                class="eyebrow"
+                style="background: rgba(255, 255, 255, 0.15); color: white"
+                >Asesmen Diagnostik Kognitif</span
+              >
+              <h1>Periodesasi UUD NRI Tahun 1945</h1>
+              <p>
+                Asesmen ini digunakan untuk melihat kesiapan awal siswa dalam
+                memahami perjalanan konstitusi Indonesia. Bacalah bacaan dengan
+                teliti sebelum menjawab.
+              </p>
+            </div>
+
+            <div class="teacher">
+              <img
+                id="teacherPhoto"
+                class="teacher-photo teacher-placeholder"
+                src="assets/hafacantik.jpeg"
+                alt="Foto Hafadzatun Adzmi, S.Pd"
+                onerror="
+                  this.onerror = null;
+                  this.style.display = 'none';
+                  document.getElementById('photoPlaceholder').style.display =
+                    'grid';
+                "
+              />
+              <div>
+                <strong>Hafadzatun Adzmi, S.Pd</strong>
+                <span>Guru / Pendidik</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="eyebrow">Identitas Siswa</span>
+          <h2 class="section-title">Silakan masuk terlebih dahulu</h2>
+          <p class="muted">
+            Nama dan nomor absen wajib diisi. Setelah asesmen dikirim, siswa
+            tidak dapat mengulang dari perangkat yang sama.
+          </p>
+
+          <div class="login-grid" style="margin-top: 20px">
+            <div>
+              <label for="studentName">Nama Lengkap</label>
+              <input
+                id="studentName"
+                type="text"
+                placeholder="Masukkan nama lengkap"
+                autocomplete="name"
+              />
+            </div>
+            <div>
+              <label for="studentNo">No. Absen</label>
+              <input
+                id="studentNo"
+                type="number"
+                min="1"
+                max="99"
+                placeholder="Contoh: 12"
+              />
+            </div>
+          </div>
+
+          <div id="loginMessage" class="status"></div>
+
+          <button
+            class="btn btn-primary"
+            style="margin-top: 18px"
+            onclick="startAssessment()"
+          >
+            Mulai Asesmen →
+          </button>
+
+          <div class="instructions">
+            <div class="info-box">
+              <b>⏱️ Waktu Terbatas</b
+              ><span
+                >Setiap bagian memiliki waktu berbeda. Timer akan berjalan
+                otomatis.</span
+              >
+            </div>
+            <div class="info-box">
+              <b>📖 Bacaan Tetap Tampil</b
+              ><span
+                >Bacaan perjalanan konstitusi tetap tersedia saat siswa
+                mengerjakan.</span
+              >
+            </div>
+            <div class="info-box">
+              <b>🔒 Tidak Dapat Diulang</b
+              ><span
+                >Setelah jawaban dikirim, asesmen dikunci untuk identitas
+                tersebut.</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-top: 0">Petunjuk Pengerjaan</h3>
+          <ol class="muted" style="line-height: 1.8">
+            <li>Isi nama lengkap dan nomor absen dengan benar.</li>
+            <li>
+              Baca teks <b>Perjalanan Konstitusi Indonesia</b> dengan teliti.
+            </li>
+            <li>
+              Jawablah setiap soal sebelum menekan tombol <b>Selanjutnya</b>.
+            </li>
+            <li>Soal yang telah dilewati tidak dapat dibuka kembali.</li>
+            <li>
+              Jika waktu habis, bagian tersebut otomatis disimpan dan
+              dilanjutkan.
+            </li>
+            <li>
+              Setelah selesai, skor dan jawaban yang sesuai akan ditampilkan.
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="quizPage" class="hidden">
+        <div class="quiz-head">
+          <div class="progress-wrap">
+            <div class="progress-label" id="progressLabel">Soal 1 dari 6</div>
+            <div class="progress">
+              <div id="progressBar" style="width: 16.6%"></div>
+            </div>
+          </div>
+          <div class="timer" id="timer">90s</div>
+        </div>
+
+        <div class="card" style="margin-top: 20px">
+          <div class="reading">
+            <h3>📖 Bacaan: PERJALANAN KONSTITUSI INDONESIA</h3>
+            <p>
+              Sejak Indonesia merdeka pada 17 Agustus 1945, kehidupan
+              ketatanegaraan Indonesia mengalami beberapa perubahan dalam
+              penggunaan konstitusi. Perubahan tersebut menunjukkan adanya
+              perjalanan konstitusi sesuai dengan kondisi politik dan
+              ketatanegaraan pada setiap masa.
+            </p>
+            <p>
+              Pada 18 Agustus 1945, PPKI mengesahkan UUD 1945 sebagai konstitusi
+              negara Indonesia. UUD 1945 berlaku sejak 18 Agustus 1945 sampai
+              dengan 27 Desember 1949. Pada masa tersebut, Indonesia
+              mempertahankan kemerdekaan dan menghadapi berbagai tantangan dalam
+              membangun negara.
+            </p>
+            <p>
+              Pada 27 Desember 1949, Indonesia berubah menjadi Republik
+              Indonesia Serikat berdasarkan hasil kesepakatan dalam Konferensi
+              Meja Bundar. Konstitusi yang berlaku pada masa tersebut adalah
+              Konstitusi Republik Indonesia Serikat atau Konstitusi RIS. Masa
+              berlakunya Konstitusi RIS berlangsung sampai dengan 17 Agustus
+              1950.
+            </p>
+            <p>
+              Selanjutnya, Indonesia kembali menjadi negara kesatuan pada 17
+              Agustus 1950. Konstitusi RIS digantikan oleh Undang-Undang Dasar
+              Sementara Tahun 1950 atau UUDS 1950. UUDS 1950 berlaku sampai
+              dengan dikeluarkannya Dekrit Presiden pada 5 Juli 1959.
+            </p>
+            <p>
+              Pada tanggal 5 Juli 1959, Presiden Soekarno mengeluarkan Dekrit
+              Presiden yang salah satu isinya menetapkan berlakunya kembali UUD
+              1945 dan menyatakan tidak berlakunya UUDS 1950. Sejak saat itu,
+              UUD 1945 kembali menjadi konstitusi yang digunakan dalam kehidupan
+              ketatanegaraan Indonesia.
+            </p>
+            <p>
+              Dalam perkembangannya, UUD 1945 mengalami perubahan pada masa
+              Reformasi. Perubahan UUD 1945 dilakukan sebanyak empat kali pada
+              tahun 1999, 2000, 2001, dan 2002. Setelah perubahan tersebut, UUD
+              1945 dikenal sebagai UUD Negara Republik Indonesia Tahun 1945 atau
+              UUD NRI Tahun 1945.
+            </p>
+          </div>
+
+          <div id="questionArea"></div>
+        </div>
+      </section>
+
+      <section id="resultPage" class="hidden">
+        <div class="result-hero">
+          <span class="eyebrow">Asesmen Selesai</span>
+          <h1 id="resultTitle">Hasil Asesmen</h1>
+          <p class="muted" id="resultStudent"></p>
+
+          <div
+            class="score-circle"
+            id="scoreCircle"
+            style="--score-percent: 0%"
+          >
+            <div class="score-inner">
+              <span id="scoreValue">0</span
+              ><small style="font-size: 14px">/15</small>
+            </div>
+          </div>
+
+          <h2 id="readinessText">Menentukan kesiapan...</h2>
+          <p class="muted" id="readinessDesc"></p>
+
+          <div class="result-grid">
+            <div class="stat">
+              <strong id="statA">0/3</strong><span>A. Pilihan Ganda</span>
+            </div>
+            <div class="stat">
+              <strong id="statB">0/4</strong><span>B. Benar / Salah</span>
+            </div>
+            <div class="stat">
+              <strong id="statC">0/4</strong><span>C. Jawaban Singkat</span>
+            </div>
+            <div class="stat">
+              <strong id="statD">0/4</strong><span>D. Analisis Kasus</span>
+            </div>
+          </div>
+
+          <div
+            style="
+              display: flex;
+              gap: 10px;
+              justify-content: center;
+              flex-wrap: wrap;
+              margin-top: 24px;
+            "
+          >
+            <button class="btn btn-primary" onclick="downloadResult()">
+              ⬇️ Download Hasil
+            </button>
+            <button class="btn btn-secondary" onclick="showReview()">
+              🔎 Lihat Jawaban
+            </button>
+          </div>
+        </div>
+
+        <div id="review" class="card answer-review hidden">
+          <h2 style="margin-top: 0">Koreksi & Jawaban yang Sesuai</h2>
+          <p class="muted">
+            Jawaban pilihan ganda dan benar/salah dinilai otomatis. Jawaban
+            uraian menggunakan pencocokan kata kunci sederhana sebagai bantuan
+            awal dan tetap dapat ditinjau guru.
+          </p>
+          <div id="reviewList"></div>
+        </div>
+      </section>
+
+      <section id="dashboardPage" class="hidden">
+        <div class="card">
+          <span class="eyebrow">Mode Guru</span>
+          <h1 class="section-title">📊 Pantauan Hasil Siswa</h1>
+          <p class="muted">
+            Klik download rekap csv untuk mengunduh hasil assesmen.
+          </p>
+
+          <div class="dashboard-tools">
+            <button class="btn btn-primary" onclick="loadDashboard()">
+              🔄 Muat / Refresh
+            </button>
+            <button class="btn btn-secondary" onclick="downloadAllResults()">
+              ⬇️ Download Rekap CSV
+            </button>
+            <button class="btn btn-secondary" onclick="backToLogin()">
+              ← Kembali
+            </button>
+          </div>
+          <div id="firebaseStatus" class="status"></div>
+
+          <div class="table-wrap">
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Absen</th>
+                  <th>Skor</th>
+                  <th>Kategori</th>
+                  <th>Waktu Kirim</th>
+                </tr>
+              </thead>
+              <tbody id="dashboardBody">
+                <tr>
+                  <td colspan="6" style="text-align: center; color: #667085">
+                    Belum ada data.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">
+        Asesmen Diagnostik Kognitif • Hafadzatun Adzmi, S.Pd • Materi
+        Periodesasi UUD NRI Tahun 1945
+      </div>
+    </main>
+
+    <div id="teacherLoginModal" class="teacher-modal hidden">
+      <div class="teacher-modal-box">
+        <button
+          class="teacher-modal-close"
+          onclick="closeTeacherLogin()"
+          aria-label="Tutup"
+        >
+          ×
+        </button>
+        <div class="teacher-login-icon">🔐</div>
+        <span class="eyebrow">Akses Guru</span>
+        <h2>Login Mode Guru</h2>
+        <p class="muted">
+          Masukkan kata sandi untuk membuka dashboard hasil asesmen siswa.
+        </p>
+
+        <label for="teacherPassword">Kata Sandi</label>
+        <input
+          id="teacherPassword"
+          type="password"
+          placeholder="Masukkan kata sandi guru"
+          autocomplete="off"
+          onkeydown="if (event.key === 'Enter') verifyTeacherPassword();"
+        />
+
+        <div id="teacherLoginMessage" class="teacher-login-message"></div>
+
+        <div class="teacher-modal-actions">
+          <button class="btn btn-secondary" onclick="closeTeacherLogin()">
+            Batal
+          </button>
+          <button class="btn btn-primary" onclick="verifyTeacherPassword()">
+            Masuk ke Dashboard
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+    <script>
+      const FIREBASE_CONFIG = {
+        apiKey: "AIzaSyDJ5YgVxZaFE4" + "vaIiVyDYUs4lMPhjweFm0",
+        authDomain: "assesmen-diagnostik-bab2.firebaseapp.com",
+        databaseURL:
+          "https://assesmen-diagnostik-bab2-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "assesmen-diagnostik-bab2",
+        storageBucket: "assesmen-diagnostik-bab2.firebasestorage.app",
+        messagingSenderId: "231679765632",
+        appId: "1:231679765632:web:fdb9776e50145d414d0a65",
+        measurementId: "G-GVN8Y9VL87",
+      };
+
+      let firebaseReady = false;
+      let db = null;
+
+      function initFirebase() {
+        try {
+          if (!FIREBASE_CONFIG.apiKey || !FIREBASE_CONFIG.databaseURL) return;
+          firebase.initializeApp(FIREBASE_CONFIG);
+          db = firebase.database();
+          firebaseReady = true;
+        } catch (err) {
+          console.warn("Firebase belum siap:", err);
+          firebaseReady = false;
+        }
+      }
+      initFirebase();
+
+      const questions = [
+        {
+          section: "A",
+          label: "A. Pilihlah jawaban yang paling tepat!",
+          number: 1,
+          time: 70,
+          type: "mc",
+          text: "Berdasarkan bacaan di atas, konstitusi yang pertama kali berlaku setelah Indonesia merdeka adalah ....",
+          options: [
+            "Konstitusi RIS",
+            "UUDS 1950",
+            "UUD 1945",
+            "UUD NRI Tahun 1945",
+          ],
+          answer: 2,
+          points: 1,
+          key: "C. UUD 1945",
+        },
+        {
+          section: "A",
+          label: "A. Pilihlah jawaban yang paling tepat!",
+          number: 2,
+          time: 70,
+          type: "mc",
+          text: "Berdasarkan bacaan di atas, merupakan singkatan dari…",
+          options: [
+            "Republik Indonesia Serikat",
+            "Republik Indonesia Raya",
+            "Republik rakyat cina",
+            "Republik Indonesia",
+          ],
+          answer: 0,
+          points: 1,
+          key: "A. Republik Indonesia Serikat",
+        },
+        {
+          section: "A",
+          label: "A. Pilihlah jawaban yang paling tepat!",
+          number: 3,
+          time: 70,
+          type: "mc",
+          text: "Berdasarkan bacaan di atas, pada tanggal berapa Dekrit Presiden dikeluarkan oleh Presiden Soekarno…",
+          options: [
+            "12 Juni 1945",
+            "5 Juli 1945",
+            "18 Agustus 1945",
+            "27 Desember 1949",
+          ],
+          answer: 1,
+          points: 1,
+          key: "B. 5 Juli 1945",
+        },
+        {
+          section: "B",
+          label: "B. Tentukan Benar (B) atau Salah (S)!",
+          number: 4,
+          time: 60,
+          type: "bs",
+          text: "Tentukan Benar atau Salah untuk setiap pernyataan berikut.",
+          statements: [
+            [
+              "UUD 1945 berlaku sejak 18 Agustus 1945 sampai 27 Desember 1949.",
+              true,
+            ],
+            [
+              "Konstitusi RIS berlaku ketika Indonesia berbentuk negara kesatuan.",
+              false,
+            ],
+            ["UUDS 1950 mulai berlaku pada 17 Agustus 1950.", true],
+            [
+              "Dekrit Presiden 5 Juli 1959 menjadi salah satu peristiwa penting yang menyebabkan berlakunya kembali UUD 1945.",
+              true,
+            ],
+          ],
+          points: 4,
+          key: "1 Benar; 2 Salah; 3 Benar; 4 Benar",
+        },
+        {
+          section: "C",
+          label: "C. Jawablah pertanyaan berikut dengan singkat!",
+          number: 5,
+          time: 45,
+          type: "text",
+          text: "Sebutkan tiga konstitusi yang pernah berlaku di Indonesia sebelum kembali berlakunya UUD 1945 pada tahun 1959!",
+          points: 2,
+          keywords: ["UUD 1945", "Konstitusi RIS", "UUDS 1950"],
+          expected: "UUD 1945; Konstitusi RIS; UUDS 1950.",
+        },
+        {
+          section: "C",
+          label: "C. Jawablah pertanyaan berikut dengan singkat!",
+          number: 6,
+          time: 60,
+          type: "text",
+          text: "Mengapa Dekrit Presiden 5 Juli 1959 menjadi peristiwa penting dalam periodesasi konstitusi Indonesia? Jelaskan secara singkat berdasarkan bacaan!",
+          points: 2,
+          keywords: [
+            "berlakunya kembali UUD 1945",
+            "tidak berlakunya UUDS 1950",
+          ],
+          expected:
+            "Dekrit Presiden 5 Juli 1959 menetapkan berlakunya kembali UUD 1945 dan menyatakan tidak berlakunya UUDS 1950.",
+        },
+        {
+          section: "D",
+          label: "D. Analisis Kasus",
+          number: 7,
+          time: 90,
+          type: "text",
+          text: "Rani sedang mempelajari perjalanan konstitusi Indonesia. Ia menemukan urutan berikut: UUD 1945 → Konstitusi RIS → UUDS 1950 → UUD 1945. Namun, Rani belum memahami mengapa konstitusi Indonesia mengalami perubahan dari satu periode ke periode lainnya. Menurut pemahamanmu, apa yang dapat menyebabkan suatu negara mengalami perubahan atau pergantian konstitusi? Jelaskan dengan mengaitkannya dengan perjalanan konstitusi Indonesia!",
+          points: 4,
+          keywords: [
+            "kondisi politik",
+            "ketatanegaraan",
+            "kebutuhan penyelenggaraan negara",
+            "perubahan kondisi",
+          ],
+          expected:
+            "Perubahan konstitusi berkaitan dengan perubahan kondisi ketatanegaraan dan politik serta kebutuhan penyelenggaraan negara, sebagaimana perjalanan UUD 1945, Konstitusi RIS, UUDS 1950, dan kembali berlakunya UUD 1945.",
+        },
+      ];
+
+      let current = 0;
+      let answers = {};
+      let timerInterval = null;
+      let timeLeft = 0;
+      let locked = false;
+      let student = { name: "", no: "" };
+      let startedAt = null;
+      let submitted = false;
+
+      const $ = (id) => document.getElementById(id);
+
+      function show(id) {
+        ["loginPage", "quizPage", "resultPage", "dashboardPage"].forEach((x) =>
+          $(x).classList.add("hidden"),
+        );
+        $(id).classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function startAssessment() {
+        const name = $("studentName").value.trim();
+        const no = $("studentNo").value.trim();
+        const msg = $("loginMessage");
+
+        if (!name || !no) {
+          msg.innerHTML = "⚠️ Nama lengkap dan No. Absen wajib diisi.";
+          msg.style.color = "var(--danger)";
+          return;
+        }
+
+        const localKey = `asesmen_${no}_${name.toLowerCase().replace(/\s+/g, "_")}`;
+        if (localStorage.getItem(localKey)) {
+          msg.innerHTML =
+            "🔒 Identitas ini sudah menyelesaikan asesmen pada perangkat ini. Asesmen tidak dapat diulang.";
+          msg.style.color = "var(--danger)";
+          return;
+        }
+
+        student = { name, no };
+        answers = {};
+        current = 0;
+        submitted = false;
+        startedAt = new Date();
+        show("quizPage");
+        renderQuestion();
+      }
+
+      function renderQuestion() {
+        clearInterval(timerInterval);
+        locked = false;
+
+        const q = questions[current];
+        $("progressLabel").textContent =
+          `Tahap ${current + 1} dari ${questions.length} • ${q.label}`;
+        $("progressBar").style.width =
+          `${((current + 1) / questions.length) * 100}%`;
+
+        let html = `<div class="question-number">${q.label} • Nomor ${q.number}</div>`;
+        html += `<h2 class="question-text">${q.text}</h2>`;
+
+        if (q.type === "mc") {
+          q.options.forEach((opt, i) => {
+            const checked = answers[current]?.value === i ? "checked" : "";
+            html += `
+              <label class="option ${checked ? "selected" : ""}">
+                <input type="radio" name="mc" value="${i}" ${checked}
+                       onchange="saveMC(${i})">
+                <span><b>${String.fromCharCode(65 + i)}.</b> ${opt}</span>
+              </label>`;
+          });
+        }
+
+        if (q.type === "bs") {
+          html += `<div class="muted" style="margin-bottom:10px">Pilih Benar atau Salah untuk setiap pernyataan.</div>`;
+          q.statements.forEach((s, i) => {
+            const val = answers[current]?.values?.[i];
+            html += `
+              <div class="statement">
+                <div><b>${i + 1}.</b> ${s[0]}</div>
+                <div class="bs-buttons">
+                  <label><input type="radio" name="bs${i}" ${val === true ? "checked" : ""} onchange="saveBS(${i},true)"> Benar</label>
+                  <label><input type="radio" name="bs${i}" ${val === false ? "checked" : ""} onchange="saveBS(${i},false)"> Salah</label>
+                </div>
+              </div>`;
+          });
+        }
+
+        if (q.type === "text") {
+          const val = answers[current]?.value || "";
+          html += `
+            <div class="short-answer">
+              <label for="textAnswer">Tuliskan jawabanmu:</label>
+              <textarea id="textAnswer" placeholder="Ketik jawaban berdasarkan bacaan dan pemahamanmu...">${escapeHtml(val)}</textarea>
+            </div>`;
+        }
+
+        html += `<div class="lock-note">🔒 Setelah menekan <b>Selanjutnya</b>, tahap ini tidak dapat dibuka kembali.</div>`;
+        html += `
+          <div class="nav-row">
+            <div></div>
+            <button class="btn btn-primary" onclick="nextQuestion()">
+              ${current === questions.length - 1 ? "Kirim Asesmen ✓" : "Simpan & Selanjutnya →"}
+            </button>
+          </div>`;
+
+        $("questionArea").innerHTML = html;
+        startTimer(q.time);
+      }
+
+      function saveMC(value) {
+        answers[current] = { value };
+        document
+          .querySelectorAll(".option")
+          .forEach((el) => el.classList.remove("selected"));
+        document
+          .querySelector(`input[name="mc"][value="${value}"]`)
+          ?.closest(".option")
+          ?.classList.add("selected");
+      }
+
+      function saveBS(index, value) {
+        if (!answers[current]) answers[current] = { values: {} };
+        if (!answers[current].values) answers[current].values = {};
+        answers[current].values[index] = value;
+      }
+
+      function saveText() {
+        const el = $("textAnswer");
+        if (el) answers[current] = { value: el.value.trim() };
+      }
+
+      function startTimer(seconds) {
+        timeLeft = seconds;
+        updateTimer();
+        timerInterval = setInterval(() => {
+          timeLeft--;
+          updateTimer();
+          if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            locked = true;
+            saveCurrent();
+            alert(
+              "⏰ Waktu tahap ini telah habis. Jawaban akan disimpan dan asesmen dilanjutkan.",
+            );
+            nextQuestion(true);
+          }
+        }, 1000);
+      }
+
+      function updateTimer() {
+        const t = $("timer");
+        t.textContent = `${timeLeft}s`;
+        t.classList.toggle("warning", timeLeft <= 20 && timeLeft > 10);
+        t.classList.toggle("danger", timeLeft <= 10);
+      }
+
+      function saveCurrent() {
+        const q = questions[current];
+        if (q.type === "text") saveText();
+      }
+
+      function nextQuestion(auto = false) {
+        if (locked && !auto) return;
+        clearInterval(timerInterval);
+        saveCurrent();
+
+        if (current < questions.length - 1) {
+          current++;
+          renderQuestion();
+        } else {
+          submitAssessment();
+        }
+      }
+
+      function normalize(s) {
+        return String(s || "")
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^\w\s]/g, " ")
+          .replace(/\s+/g, " ")
+          .trim();
+      }
+
+      function scoreText(answer, keywords, max) {
+        const a = normalize(answer);
+        if (!a) return 0;
+        const hits = keywords.filter((k) => a.includes(normalize(k))).length;
+        if (max === 2) return hits >= 2 ? 2 : hits === 1 ? 1 : 0;
+        if (max === 4) {
+          if (hits >= 4) return 4;
+          if (hits === 3) return 3;
+          if (hits === 2) return 2;
+          if (hits === 1) return 1;
+          return 0;
+        }
+        return 0;
+      }
+
+      function calculateScore() {
+        let total = 0,
+          section = { A: 0, B: 0, C: 0, D: 0 };
+        const review = [];
+
+        for (let i = 0; i < 3; i++) {
+          const q = questions[i],
+            ans = answers[i]?.value;
+          const ok = ans === q.answer;
+          const pts = ok ? 1 : 0;
+          total += pts;
+          section.A += pts;
+          review.push({
+            title: `A${i + 1}. ${q.text}`,
+            your:
+              ans === undefined
+                ? "Tidak dijawab"
+                : `${String.fromCharCode(65 + ans)}. ${q.options[ans]}`,
+            correct: q.key,
+            points: `${pts}/1`,
+            ok,
+          });
+        }
+
+        const qb = questions[3];
+        const vals = answers[3]?.values || {};
+        let bPts = 0;
+        qb.statements.forEach((s, i) => {
+          const ok = vals[i] === s[1];
+          if (ok) bPts++;
+        });
+        total += bPts;
+        section.B = bPts;
+        review.push({
+          title: "B. Benar / Salah",
+          your: Object.keys(vals).length
+            ? Object.entries(vals)
+                .map(([i, v]) => `${+i + 1}. ${v ? "Benar" : "Salah"}`)
+                .join("; ")
+            : "Tidak dijawab",
+          correct: qb.key,
+          points: `${bPts}/4`,
+          ok: bPts === 4,
+        });
+
+        const qc1 = questions[4],
+          a1 = answers[4]?.value || "";
+        const p1 = scoreText(a1, qc1.keywords, 2);
+        total += p1;
+        section.C += p1;
+        review.push({
+          title: "C. Nomor 4 — Tiga konstitusi",
+          your: a1 || "Tidak dijawab",
+          correct: qc1.expected,
+          points: `${p1}/2`,
+          ok: p1 === 2,
+        });
+
+        const qc2 = questions[5],
+          a2 = answers[5]?.value || "";
+        const p2 = scoreText(a2, qc2.keywords, 2);
+        total += p2;
+        section.C += p2;
+        review.push({
+          title: "C. Nomor 5 — Pentingnya Dekrit Presiden 5 Juli 1959",
+          your: a2 || "Tidak dijawab",
+          correct: qc2.expected,
+          points: `${p2}/2`,
+          ok: p2 === 2,
+        });
+
+        const qd = questions[6],
+          ad = answers[6]?.value || "";
+        const pd = scoreText(ad, qd.keywords, 4);
+        total += pd;
+        section.D = pd;
+        review.push({
+          title: "D. Analisis Kasus",
+          your: ad || "Tidak dijawab",
+          correct: qd.expected,
+          points: `${pd}/4`,
+          ok: pd === 4,
+        });
+
+        return { total, section, review };
+      }
+
+      async function submitAssessment() {
+        if (submitted) return;
+        submitted = true;
+        clearInterval(timerInterval);
+
+        const result = calculateScore();
+        const category =
+          result.total <= 6
+            ? "Kelompok 1"
+            : result.total <= 9
+              ? "Kelompok 2"
+              : result.total <= 11
+                ? "Kelompok 3"
+                : "Mahir";
+
+        const followup =
+          result.total <= 6
+            ? "Bantuan konsep dan kartu periode"
+            : result.total <= 9
+              ? "Bantuan pengelompokan dan urutan"
+              : result.total <= 11
+                ? "Peta konsep dan hubungan antarkonsep"
+                : "Peta konsep + analisis sebab-akibat";
+
+        const payload = {
+          name: student.name,
+          no: String(student.no),
+          score: result.total,
+          maxScore: 15,
+          category,
+          followup,
+          section: result.section,
+          answers,
+          submittedAt: new Date().toISOString(),
+        };
+
+        localStorage.setItem(
+          `asesmen_${student.no}_${student.name.toLowerCase().replace(/\s+/g, "_")}`,
+          JSON.stringify(payload),
+        );
+
+        if (firebaseReady) {
+          try {
+            const safeKey = `${String(student.no).padStart(2, "0")}_${normalize(student.name).replace(/\s+/g, "_").slice(0, 60)}`;
+            await db.ref("asesmen/" + safeKey).set(payload);
+          } catch (err) {
+            console.error("Gagal menyimpan Firebase:", err);
+          }
+        }
+
+        displayResult(payload, result, category, followup);
+      }
+
+      function displayResult(payload, result, category, followup) {
+        $("scoreValue").textContent = result.total;
+        $("scoreCircle").style.setProperty(
+          "--score-percent",
+          `${(result.total / 15) * 100}%`,
+        );
+        $("resultStudent").textContent =
+          `${payload.name} • No. Absen ${payload.no}`;
+        $("statA").textContent = `${result.section.A}/3`;
+        $("statB").textContent = `${result.section.B}/4`;
+        $("statC").textContent = `${result.section.C}/4`;
+        $("statD").textContent = `${result.section.D}/4`;
+        $("readinessText").textContent = category;
+        $("readinessDesc").textContent = `Tindak lanjut TaRL: ${followup}`;
+
+        const list = $("reviewList");
+        list.innerHTML = result.review
+          .map(
+            (r, i) => `
+          <div class="review-item">
+            <div class="review-head">
+              <b>${i + 1}. ${r.title}</b>
+              <span class="badge ${r.ok ? "badge-green" : "badge-red"}">${r.points}</span>
+            </div>
+            <div class="answer-box">
+              <b>Jawaban siswa:</b><br>${escapeHtml(r.your)}<br><br>
+              <b>Jawaban yang sesuai:</b><br>${escapeHtml(r.correct)}
+            </div>
+          </div>
+        `,
+          )
+          .join("");
+
+        show("resultPage");
+      }
+
+      function showReview() {
+        $("review").classList.remove("hidden");
+        $("review").scrollIntoView({ behavior: "smooth" });
+      }
+
+      function downloadResult() {
+        const raw = localStorage.getItem(
+          `asesmen_${student.no}_${student.name.toLowerCase().replace(/\s+/g, "_")}`,
+        );
+        if (!raw) return;
+        const payload = JSON.parse(raw);
+        const result = calculateScore();
+
+        let text = `ASESMEN DIAGNOSTIK KOGNITIF SMAN 2 MATARAM\n`;
+        text += `Materi: Periodesasi UUD NRI Tahun 1945\n`;
+        text += `Guru: Hafadzatun Adzmi, S.Pd\n\n`;
+        text += `Nama: ${payload.name}\nNo. Absen: ${payload.no}\nSkor: ${payload.score}/15\nKategori: ${payload.category}\nTindak lanjut: ${payload.followup}\n\n`;
+        text += `RINCIAN SKOR\nA. Pilihan Ganda: ${result.section.A}/3\n`;
+        text += `B. Benar/Salah: ${result.section.B}/4\n`;
+        text += `C. Jawaban Singkat: ${result.section.C}/4\n`;
+        text += `D. Analisis Kasus: ${result.section.D}/4\n\n`;
+        text += `JAWABAN DAN KOREKSI\n`;
+        result.review.forEach((r, i) => {
+          text += `\n${i + 1}. ${r.title}\nJawaban siswa: ${r.your}\nJawaban sesuai: ${r.correct}\nSkor: ${r.points}\n`;
+        });
+
+        const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = `Hasil_Asesmen_${payload.no}_${payload.name.replace(/\s+/g, "_")}.txt`;
+        a.click();
+        URL.revokeObjectURL(a.href);
+      }
+
+      const TEACHER_PASSWORD = "ummu_tabina_alhfzh02";
+      let teacherAuthenticated = false;
+
+      function openDashboard() {
+        if (teacherAuthenticated) {
+          show("dashboardPage");
+          loadDashboard();
+          return;
+        }
+
+        $("teacherPassword").value = "";
+        $("teacherLoginMessage").textContent = "";
+        $("teacherLoginModal").classList.remove("hidden");
+        document.body.classList.add("modal-open");
+
+        setTimeout(() => $("teacherPassword").focus(), 100);
+      }
+
+      function closeTeacherLogin() {
+        $("teacherLoginModal").classList.add("hidden");
+        document.body.classList.remove("modal-open");
+        $("teacherPassword").value = "";
+        $("teacherLoginMessage").textContent = "";
+      }
+
+      function verifyTeacherPassword() {
+        const password = $("teacherPassword").value;
+
+        if (password === TEACHER_PASSWORD) {
+          teacherAuthenticated = true;
+          closeTeacherLogin();
+          show("dashboardPage");
+          loadDashboard();
+        } else {
+          teacherAuthenticated = false;
+          $("teacherLoginMessage").textContent =
+            "❌ Kata sandi salah. Akses Mode Guru ditolak.";
+          $("teacherPassword").value = "";
+          $("teacherPassword").focus();
+        }
+      }
+
+      async function loadDashboard() {
+        if (!teacherAuthenticated) {
+          closeTeacherLogin();
+          show("loginPage");
+          return;
+        }
+
+        const status = $("firebaseStatus");
+        let rows = [];
+
+        if (firebaseReady) {
+          status.textContent =
+            "🟢 Terhubung ke Firebase. Data akan diperbarui dari database.";
+          try {
+            const snap = await db.ref("asesmen").once("value");
+            const data = snap.val() || {};
+            rows = Object.values(data);
+          } catch (err) {
+            status.textContent =
+              "🔴 Firebase terhubung, tetapi data tidak dapat dibaca. Periksa Rules Realtime Database.";
+            console.error(err);
+          }
+        } else {
+          status.textContent = "mode guru";
+          const prefix = "asesmen_";
+          Object.keys(localStorage)
+            .filter((k) => k.startsWith(prefix))
+            .forEach((k) => {
+              try {
+                const p = JSON.parse(localStorage.getItem(k));
+                if (p && p.name) rows.push(p);
+              } catch (e) {}
+            });
+        }
+
+        rows.sort((a, b) =>
+          String(a.no).localeCompare(String(b.no), undefined, {
+            numeric: true,
+          }),
+        );
+        $("dashboardBody").innerHTML = rows.length
+          ? rows
+              .map(
+                (r, i) => `
+          <tr>
+            <td>${i + 1}</td>
+            <td><b>${escapeHtml(r.name)}</b></td>
+            <td>${escapeHtml(r.no)}</td>
+            <td><b>${r.score}/15</b></td>
+            <td><span class="badge badge-purple">${escapeHtml(r.category || "-")}</span></td>
+            <td>${formatDate(r.submittedAt)}</td>
+          </tr>
+        `,
+              )
+              .join("")
+          : `<tr><td colspan="6" style="text-align:center;color:#667085">Belum ada data.</td></tr>`;
+      }
+
+      function downloadAllResults() {
+        const rows = [];
+        Object.keys(localStorage)
+          .filter((k) => k.startsWith("asesmen_"))
+          .forEach((k) => {
+            try {
+              const p = JSON.parse(localStorage.getItem(k));
+              if (p && p.name) rows.push(p);
+            } catch (e) {}
+          });
+
+        if (!rows.length) {
+          alert(
+            "Belum ada hasil lokal untuk diunduh. Jika menggunakan Firebase, gunakan ekspor dari database atau buka dashboard setelah data dimuat.",
+          );
+          return;
+        }
+
+        let csv = "No,Nama,Absen,Skor,Maksimal,Kategori,Tindak Lanjut,Waktu\n";
+        rows.forEach((r) => {
+          csv +=
+            [
+              `"${rows.indexOf(r) + 1}"`,
+              `"${String(r.name).replace(/"/g, '""')}"`,
+              `"${r.no}"`,
+              r.score,
+              15,
+              `"${r.category}"`,
+              `"${String(r.followup).replace(/"/g, '""')}"`,
+              `"${formatDate(r.submittedAt)}"`,
+            ].join(",") + "\n";
+        });
+
+        const blob = new Blob(["\ufeff" + csv], {
+          type: "text/csv;charset=utf-8",
+        });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "Rekap_Asesmen_Diagnostik.csv";
+        a.click();
+        URL.revokeObjectURL(a.href);
+      }
+
+      function backToLogin() {
+        show("loginPage");
+      }
+
+      function escapeHtml(s) {
+        return String(s ?? "").replace(
+          /[&<>"']/g,
+          (m) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#039;",
+            })[m],
+        );
+      }
+
+      function formatDate(iso) {
+        if (!iso) return "-";
+        try {
+          return new Intl.DateTimeFormat("id-ID", {
+            dateStyle: "medium",
+            timeStyle: "short",
+          }).format(new Date(iso));
+        } catch (e) {
+          return iso;
+        }
+      }
+    </script>
+  </body>
+</html>
